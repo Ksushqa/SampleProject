@@ -9,13 +9,14 @@ namespace Modules.ResourcesModule.Models
     {
         [SerializeField] private string _id;
         [SerializeField] private string _resourcePath;
-        [SerializeField] private ResourcesCategory _resourcesCategory;
+        [SerializeField] private ResourcesCategoryType _resourcesCategory;
+        [SerializeField] private string _fileExtension;
 
         public string Id => _id;
 
         public string GetPath()
         {
-            var collectionPath = _resourcesCategory != ResourcesCategory.None
+            var collectionPath = _resourcesCategory != ResourcesCategoryType.None
                 ? $"{_resourcesCategory.ToString()}/"
                 : string.Empty;
 

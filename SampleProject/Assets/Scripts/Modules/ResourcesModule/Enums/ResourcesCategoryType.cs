@@ -1,6 +1,6 @@
 namespace Modules.ResourcesModule.Enums
 {
-    public enum ResourcesCategory
+    public enum ResourcesCategoryType
     {
         None = 0,
         

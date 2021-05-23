@@ -10,10 +10,10 @@ namespace Modules.ResourcesModule.Managers
             return Resources.Load<T>(path);
         }
 
-        public T Load<T>(string path, ResourcesCategory resources) where T : Object
+        public T Load<T>(string path, ResourcesCategoryType resources) where T : Object
         {
-            var collectionPath = resources != ResourcesCategory.None ? $"{resources.ToString()}/" : string.Empty;
-            var resourcePath = $"{collectionPath}{path}";
+            var collectionPath = resources != ResourcesCategoryType.None ? $"{resources.ToString()}/" : string.Empty;
+            var resourcePath = $"Media/{collectionPath}{path}";
             return Resources.Load<T>(resourcePath);
         }
     }

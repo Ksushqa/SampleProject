@@ -6,6 +6,6 @@ namespace Modules.ResourcesModule.Managers
     public interface IResourcesManager
     {
         T Load<T>(string path) where T : Object;
-        T Load<T>(string path, ResourcesCategory resources) where T : Object;
+        T Load<T>(string path, ResourcesCategoryType resources) where T : Object;
     }
 }

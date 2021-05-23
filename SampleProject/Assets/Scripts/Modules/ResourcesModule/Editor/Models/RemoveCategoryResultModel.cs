@@ -6,9 +6,9 @@ namespace Modules.ResourcesModule.Editor.Models
     {
         public string ResultPath { get; }
         public int InspectorIndex { get; }
-        public ResourcesCategory Category { get; }
+        public ResourcesCategoryType Category { get; }
 
-        public RemoveCategoryResultModel(string resultPath, int inspectorIndex, ResourcesCategory category)
+        public RemoveCategoryResultModel(string resultPath, int inspectorIndex, ResourcesCategoryType category)
         {
             ResultPath = resultPath;
             InspectorIndex = inspectorIndex;
@@ -19,7 +19,7 @@ namespace Modules.ResourcesModule.Editor.Models
         {
             ResultPath = resultPath;
             InspectorIndex = 0;
-            Category = ResourcesCategory.None;
+            Category = ResourcesCategoryType.None;
         }
     }
 }
