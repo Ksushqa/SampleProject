@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resources:
   - _id: Cube
-    _resourcePath: Prefabs/Cube
-    _resourcesCategory: 12
-    _fileExtension: .prefab
-  - _id: Cube2
-    _resourcePath: Cube 1
+    _resourcePath: Cube
     _resourcesCategory: 10
     _fileExtension: .prefab
+  - _id: Cube2
+    _resourcePath: 
+    _resourcesCategory: 0
+    _fileExtension: 

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Modules.ResourcesModule.Editor.Models;
 using Modules.ResourcesModule.Enums;
+using Modules.ResourcesModule.Helpers;
 using UnityEditor;
 using Object = UnityEngine.Object;
 
@@ -39,7 +40,7 @@ namespace Modules.ResourcesModule.Editor
             {
                 var fullPath = AssetDatabase.GetAssetPath(_asset);
                 var withCategoryPath = fullPath.Replace("Assets/Resources/", string.Empty).Replace("Media/", string.Empty);
-                var removeCategoryResult = RemoveCategory(withCategoryPath);
+                var removeCategoryResult = ResourcesPathHelper.RemoveCategory(withCategoryPath);
 
                 var fileExtension = Path.GetExtension(fullPath);
                 var path = removeCategoryResult.ResultPath.Replace(fileExtension, string.Empty);
@@ -73,24 +74,6 @@ namespace Modules.ResourcesModule.Editor
                 
                 EditorGUILayout.Space();
             }
-        }
-        
-        private RemoveCategoryResultModel RemoveCategory(string path)
-        {
-            var categories = Enum.GetNames(typeof(ResourcesCategoryType));
-
-            for (var i = 0; i < categories.Length; i++)
-            {
-                var category = categories[i];
-                if (path.StartsWith($"{category}/"))
-                {
-                    var resultPath = path.Remove(0, category.Length + 1);
-                    Enum.TryParse(category, out ResourcesCategoryType resourcesCategory);
-                    return new RemoveCategoryResultModel(resultPath, i, resourcesCategory);
-                }
-            }
-
-            return new RemoveCategoryResultModel(path);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Modules.ResourcesModule.Enums;
+using Modules.ResourcesModule.Helpers;
 using UnityEngine;
 
 namespace Modules.ResourcesModule.Models
@@ -9,6 +10,7 @@ namespace Modules.ResourcesModule.Models
     {
         [SerializeField] private string _id;
         [SerializeField] private string _resourcePath;
+        // TODO: использовать гуид, а не путь, чтобы перемещения не мешали объекту
         [SerializeField] private ResourcesCategoryType _resourcesCategory;
         [SerializeField] private string _fileExtension;
 
@@ -16,12 +18,7 @@ namespace Modules.ResourcesModule.Models
 
         public string GetPath()
         {
-            var collectionPath = _resourcesCategory != ResourcesCategoryType.None
-                ? $"{_resourcesCategory.ToString()}/"
-                : string.Empty;
-
-            var mediaFolder = "Media/";
-            return $"{mediaFolder}{collectionPath}{_resourcePath}";
+            return ResourcesPathHelper.GetResourcesPath(_resourcePath, _resourcesCategory.ToString());
         }
     }
 }
