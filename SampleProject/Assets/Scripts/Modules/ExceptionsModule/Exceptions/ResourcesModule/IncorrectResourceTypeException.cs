@@ -1,6 +1,6 @@
 using System;
 
-namespace Modules.ExceptionsModule.Exceptions
+namespace Modules.ExceptionsModule.Exceptions.ResourcesModule
 {
     public class IncorrectResourceTypeException : Exception
     {

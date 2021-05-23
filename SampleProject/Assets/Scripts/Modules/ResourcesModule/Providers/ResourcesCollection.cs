@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using Modules.ExceptionsModule.Exceptions;
-using Modules.ResourcesModule.Enums;
+using Modules.ExceptionsModule.Exceptions.ResourcesModule;
 using Modules.ResourcesModule.Models;
 using UnityEngine;
 
 namespace Modules.ResourcesModule.Providers
 {
-    [CreateAssetMenu(menuName = "SampleProject/ResourcesCollection", fileName = "Create ResourcesCollection")]
+    [CreateAssetMenu(fileName = "ResourcesCollection", menuName = "SampleProject/Create ResourcesCollection")]
     public class ResourcesCollection : ScriptableObject, IResourcesCollection
     {
         [SerializeField] private List<ResourceReference> _resources;
@@ -34,12 +33,7 @@ namespace Modules.ResourcesModule.Providers
                 throw new IncorrectResourceIdException(id);
             }
 
-            var collectionPath = resourceReference.CollectionType != CollectionType.None
-                ? $"{resourceReference.CollectionType.ToString()}/"
-                : string.Empty;
-
-            var mediaFolder = "Media/";
-            return $"{collectionPath}{mediaFolder}{resourceReference.ResourcePath}";
+            return resourceReference.GetPath();
         }
     }
 }
