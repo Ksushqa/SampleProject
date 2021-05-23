@@ -1,8 +1,6 @@
-using System;
 using Modules.ResourcesModule.Helpers;
 using Modules.ResourcesModule.Providers;
 using UnityEditor;
-using UnityEngine;
 
 namespace Modules.ResourcesModule.AssetProcessors
 {
@@ -24,8 +22,6 @@ namespace Modules.ResourcesModule.AssetProcessors
                 var collection = AssetDatabase.LoadAssetAtPath<ResourcesCollection>(path);
                 if (collection != null)
                 {
-                    Debug.Log(collection.name);
-                    
                     var serializedObject = new SerializedObject(collection);
                     var resourcesProperty = serializedObject.FindProperty("_resources");
                     for (int i = 0; i < resourcesProperty.arraySize; i++)
