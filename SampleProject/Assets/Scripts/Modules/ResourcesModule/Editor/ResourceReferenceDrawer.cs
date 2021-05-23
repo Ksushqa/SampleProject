@@ -18,20 +18,18 @@ namespace Modules.ResourcesModule.Editor
         private bool IsAssetEmpty => _asset == null;
         
         private Object _asset;
-        private bool _isFoldoutOpened;
-     
-        private readonly SerializedProperty _property;
+        private bool _isFoldoutOpened = true;
+
         private readonly int _index;
    
         public ResourceReferenceDrawer(SerializedProperty property, int index)
         {
-            _property = property;
             _index = index;
             
-            IdProperty = _property.FindPropertyRelative("_id");
-            PathProperty = _property.FindPropertyRelative("_resourcePath");
-            CategoryProperty = _property.FindPropertyRelative("_resourcesCategory");
-            ExtensionProperty = _property.FindPropertyRelative("_fileExtension");
+            IdProperty = property.FindPropertyRelative("_id");
+            PathProperty = property.FindPropertyRelative("_resourcePath");
+            CategoryProperty = property.FindPropertyRelative("_resourcesCategory");
+            ExtensionProperty = property.FindPropertyRelative("_fileExtension");
         }
 
         public void Draw()
