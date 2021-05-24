@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using Modules.ResourcesModule.Editor.Models;
 using Modules.ResourcesModule.Enums;
 using Modules.ResourcesModule.Models;
 

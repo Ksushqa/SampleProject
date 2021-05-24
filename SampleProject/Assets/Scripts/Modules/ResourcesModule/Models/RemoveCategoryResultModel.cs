@@ -1,6 +1,6 @@
 using Modules.ResourcesModule.Enums;
 
-namespace Modules.ResourcesModule.Editor.Models
+namespace Modules.ResourcesModule.Models
 {
     public class RemoveCategoryResultModel
     {
