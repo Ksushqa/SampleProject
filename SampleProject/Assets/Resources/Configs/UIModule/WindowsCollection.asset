@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resources:
   - _id: main_window
-    _resourcePath: 
-    _resourcesCategory: 0
-    _fileExtension: 
+    _resourcePath: Prefabs/MainWindow
+    _resourcesCategory: 10
+    _fileExtension: .prefab

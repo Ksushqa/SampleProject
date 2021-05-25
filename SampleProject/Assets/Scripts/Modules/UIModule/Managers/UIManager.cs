@@ -8,21 +8,22 @@ namespace Modules.UIModule.Managers
 {
     public class UIManager : IUIManager
     {
-        private const string ModuleResourcesPath = "Configs/UIModule/";
+        private const string ModuleResourcesPath = "Configs/UIModule";
 
         private readonly ICanvasesProvider _canvasesProvider;
         private readonly IWindowViewProvider _windowViewProvider;
         private readonly ResourcesCollection _canvasesCollection;
         private readonly ResourcesCollection _windowsCollection;
+        private readonly WindowsProvider _windowsProvider;
 
         public UIManager(IResourcesManager resourcesManager)
         {
             _canvasesProvider = resourcesManager.Load<CanvasesProvider>($"{ModuleResourcesPath}/CanvasesConfig");
-            IWindowsProvider windowsProvider = resourcesManager.Load<WindowsProvider>($"{ModuleResourcesPath}/WindowsConfig");
+            _windowsProvider = resourcesManager.Load<WindowsProvider>($"{ModuleResourcesPath}/WindowsConfig");
             _canvasesCollection = resourcesManager.Load<ResourcesCollection>($"{ModuleResourcesPath}/CanvasesCollection");
-            _windowsCollection = resourcesManager.Load<ResourcesCollection>($"{ModuleResourcesPath}/CanvasesCollection");
+            _windowsCollection = resourcesManager.Load<ResourcesCollection>($"{ModuleResourcesPath}/WindowsCollection");
             
-            _windowViewProvider = new WindowViewProvider(_canvasesProvider, windowsProvider, _canvasesCollection, _windowsCollection);
+            _windowViewProvider = new WindowViewProvider(_canvasesProvider, _windowsProvider, _canvasesCollection, _windowsCollection);
         }
 
         public TView ShowWindow<TView, TViewModel>(WindowType windowType, TViewModel viewModel)
