@@ -1,6 +1,6 @@
 namespace Modules.UIModule.Views.MainWindow
 {
-    public class Main : BaseView<MainWindowModel>
+    public class MainWindowView : BaseView<MainWindowViewModel>
     {
         protected override void OnStartActions()
         {

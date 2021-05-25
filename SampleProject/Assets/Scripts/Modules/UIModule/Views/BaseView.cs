@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Modules.UIModule.Views
 {
-    public abstract class BaseView<TViewModel> : MonoBehaviour
+    public abstract class BaseView<TViewModel> : MonoBehaviour, IBaseView<TViewModel>
         where TViewModel : IViewModel
     {
         [NonSerialized] protected GameObject GameObject;
