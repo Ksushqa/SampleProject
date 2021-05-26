@@ -8,5 +8,7 @@ namespace Modules.UIModule.Managers
         TView ShowWindow<TView, TViewModel>(WindowType windowType, TViewModel viewModel)
             where TView : IBaseView<TViewModel>
             where TViewModel : IViewModel;
+
+        bool HideWindow(WindowType windowType);
     }
 }

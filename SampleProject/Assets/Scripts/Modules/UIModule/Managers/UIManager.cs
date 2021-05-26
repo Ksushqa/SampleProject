@@ -1,3 +1,4 @@
+using Modules.CommonModule.Controllers;
 using Modules.ResourcesModule.Managers;
 using Modules.ResourcesModule.Providers;
 using Modules.UIModule.Enums;
@@ -16,14 +17,14 @@ namespace Modules.UIModule.Managers
         private readonly ResourcesCollection _windowsCollection;
         private readonly WindowsProvider _windowsProvider;
 
-        public UIManager(IResourcesManager resourcesManager)
+        public UIManager(IResourcesManager resourcesManager, CoroutineController coroutineController)
         {
             _canvasesProvider = resourcesManager.Load<CanvasesProvider>($"{ModuleResourcesPath}/CanvasesConfig");
             _windowsProvider = resourcesManager.Load<WindowsProvider>($"{ModuleResourcesPath}/WindowsConfig");
             _canvasesCollection = resourcesManager.Load<ResourcesCollection>($"{ModuleResourcesPath}/CanvasesCollection");
             _windowsCollection = resourcesManager.Load<ResourcesCollection>($"{ModuleResourcesPath}/WindowsCollection");
             
-            _windowViewProvider = new WindowViewProvider(_canvasesProvider, _windowsProvider, _canvasesCollection, _windowsCollection);
+            _windowViewProvider = new WindowViewProvider(coroutineController, _canvasesProvider, _windowsProvider, _canvasesCollection, _windowsCollection);
         }
 
         public TView ShowWindow<TView, TViewModel>(WindowType windowType, TViewModel viewModel)
