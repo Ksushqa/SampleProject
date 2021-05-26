@@ -1,3 +1,9 @@
+using System;
+using Modules.ScenariosModule.Controllers;
+using Modules.ScenariosModule.Enums;
+using Modules.ScenariosModule.Managers;
+using Modules.ScenariosModule.Models;
+using Modules.UIModule.Controllers;
 using Modules.UIModule.Enums;
 using Modules.UIModule.Managers;
 using Modules.UIModule.Views;
@@ -9,31 +15,41 @@ namespace Modules.ScenariosModule.Scenarios
         public abstract WindowType WindowType { get; }
         public abstract void InitializeActionsToStorage();
 
+        private readonly IScenarioManager _scenarioManager;
         private readonly IUIManager _uiManager;
 
-        protected BaseScenario(IUIManager uiManager)
+        protected BaseScenario(
+            IScenarioManager scenarioManager,
+            IUIManager uiManager)
         {
+            _scenarioManager = scenarioManager;
             _uiManager = uiManager;
         }
-        
-        public void Add(WindowType windowType, IViewModel viewModel)
-        {
-            // cast to window type and view model ?
-        }
 
-        public void AddOver()
+        public void AddAction(GameActionType actionType, Action<GameActionArgs> onActionDone)
         {
-            
-        }
-
-        public void Close()
-        {
-            // close this
+            _scenarioManager.RegisterAction(actionType, onActionDone);
         }
         
-        public void CloseAll()
+        public void ShowWindowUnique<TViewModel>(WindowType windowType, TViewModel viewModel) where TViewModel : IViewModel
         {
-            
+            _uiManager.HideAll();
+            _uiManager.Show(windowType, viewModel);
+        }
+
+        public void ShowWindowOver<TViewModel>(WindowType windowType, TViewModel viewModel) where TViewModel : IViewModel
+        {
+            _uiManager.Show(windowType, viewModel);            
+        }
+
+        public void HideWindow()
+        {
+            _uiManager.Hide(WindowType);
+        }
+        
+        public void HideAllWindows()
+        {
+            _uiManager.HideAll();
         }
     }
 }

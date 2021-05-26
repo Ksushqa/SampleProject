@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Modules.CommonModule.Controllers;
 using Modules.ResourcesModule.Models;
 using Modules.ResourcesModule.Providers;
+using Modules.ScenariosModule.Managers;
 using Modules.UIModule.Enums;
 using Modules.UIModule.Models;
 using Modules.UIModule.Views;
@@ -14,6 +15,7 @@ namespace Modules.UIModule.Providers
     {
         private readonly Dictionary<WindowType, CanvasWindowModel> _windows;
 
+        private readonly IScenarioManager _scenarioManager;
         private readonly CoroutineController _coroutineController;
         private readonly ICanvasesProvider _canvasesProvider;
         private readonly IWindowsProvider _windowsProvider;
@@ -21,12 +23,14 @@ namespace Modules.UIModule.Providers
         private readonly IResourcesCollection _windowsCollection;
 
         public WindowViewProvider(
+            IScenarioManager scenarioManager,
             CoroutineController coroutineController,
             ICanvasesProvider canvasesProvider,
             IWindowsProvider windowsProvider,
             IResourcesCollection canvasesCollection,
             IResourcesCollection windowsCollection)
         {
+            _scenarioManager = scenarioManager;
             _coroutineController = coroutineController;
             _canvasesProvider = canvasesProvider;
             _windowsProvider = windowsProvider;
@@ -59,6 +63,7 @@ namespace Modules.UIModule.Providers
             var canvasInstance = Object.Instantiate(canvasPrefab);
             var windowInstance = Object.Instantiate(windowPrefab, canvasInstance.transform);
             var baseWindowView = windowInstance.GetComponent<BaseWindowView>();
+            baseWindowView.Init(_scenarioManager);
             
             return new CanvasWindowModel(windowType, canvasInstance, baseWindowView);
         }

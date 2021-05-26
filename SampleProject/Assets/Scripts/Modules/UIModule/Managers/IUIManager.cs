@@ -5,10 +5,12 @@ namespace Modules.UIModule.Managers
 {
     public interface IUIManager
     {
-        TView ShowWindow<TView, TViewModel>(WindowType windowType, TViewModel viewModel)
+        void Show<TView, TViewModel>(WindowType windowType, TViewModel viewModel)
             where TView : IBaseView<TViewModel>
             where TViewModel : IViewModel;
 
-        bool HideWindow(WindowType windowType);
+        void Show<TViewModel>(WindowType windowType, TViewModel viewModel) where TViewModel : IViewModel;
+        void Hide(WindowType windowType);
+        void HideAll();
     }
 }

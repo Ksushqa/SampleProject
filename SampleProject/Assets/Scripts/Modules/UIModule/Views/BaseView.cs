@@ -1,8 +1,15 @@
 using System;
+using Modules.ScenariosModule.Enums;
+using Modules.ScenariosModule.Models;
 using UnityEngine;
 
 namespace Modules.UIModule.Views
 {
+    public abstract class BaseView : BaseView<IViewModel>
+    {
+        
+    }
+    
     public abstract class BaseView<TViewModel> : MonoBehaviour, IBaseView<TViewModel>
         where TViewModel : IViewModel
     {
@@ -26,10 +33,17 @@ namespace Modules.UIModule.Views
 
         private TViewModel _viewModel;
         private bool _isSubscribed;
+        private BaseWindowView _baseWindowView;
 
         public void Initialize(TViewModel viewModel)
         {
+            _baseWindowView = GetComponent<BaseWindowView>();
             _viewModel = viewModel;
+        }
+
+        public void ExecuteAction(GameActionType gameActionType, GameActionArgs actionArgs = null)
+        {
+            _baseWindowView.ScenarioManager.ExecuteAction(gameActionType, actionArgs);
         }
         
         protected virtual void OnDestroyActions()
