@@ -21,7 +21,10 @@ namespace Modules.GameInitializationModule.EntryPoint
             IUIManager uiManager = new UIManager(resourcesManager, coroutineController, scenarioManager);
 
             var mainWindowScenario = new MainWindowScenario(scenarioManager, uiManager);
+            var gameWindowScenario = new GameWindowScenario(scenarioManager, uiManager);
+            
             mainWindowScenario.InitializeActionsToStorage();
+            gameWindowScenario.InitializeActionsToStorage();
             
             scenarioManager.ExecuteAction(GameActionType.GameInitialized);
         }

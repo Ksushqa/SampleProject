@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Modules.CommonModule.Controllers;
-using Modules.ResourcesModule.Models;
 using Modules.ResourcesModule.Providers;
 using Modules.ScenariosModule.Managers;
 using Modules.UIModule.Enums;
@@ -86,6 +85,14 @@ namespace Modules.UIModule.Providers
             yield return new WaitForSeconds(windowModel.Window.TimeBeforeDestroy);
             Object.Destroy(windowModel.Canvas);
             _windows.Remove(windowModel.WindowType);
+        }
+
+        public void RemoveAllWindows()
+        {
+            foreach (var window in _windows)
+            {
+                RemoveWindow(window.Key);
+            }
         }
     }
 }

@@ -7,5 +7,6 @@ namespace Modules.UIModule.Providers
     {
         CanvasWindowModel GetOrAddWindow(WindowType windowType);
         bool RemoveWindow(WindowType windowType);
+        void RemoveAllWindows();
     }
 }

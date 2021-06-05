@@ -1,9 +1,7 @@
 using System;
-using Modules.ScenariosModule.Controllers;
 using Modules.ScenariosModule.Enums;
 using Modules.ScenariosModule.Managers;
 using Modules.ScenariosModule.Models;
-using Modules.UIModule.Controllers;
 using Modules.UIModule.Enums;
 using Modules.UIModule.Managers;
 using Modules.UIModule.Views;

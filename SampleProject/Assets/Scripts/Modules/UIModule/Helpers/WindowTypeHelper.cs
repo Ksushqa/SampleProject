@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Modules.UIModule.Enums;
+using Modules.UIModule.Views.GameWindow;
 using Modules.UIModule.Views.MainWindow;
 
 namespace Modules.UIModule.Helpers
@@ -9,22 +10,13 @@ namespace Modules.UIModule.Helpers
     {
         private static Dictionary<WindowType, Type> _viewTypes = new Dictionary<WindowType, Type>
         {
-            { WindowType.Main, typeof(MainWindowView) }
-        };
-        
-        private static Dictionary<WindowType, Type> _modelTypes = new Dictionary<WindowType, Type>
-        {
-            { WindowType.Main, typeof(MainWindowViewModel) }
+            { WindowType.Main, typeof(MainWindowView) },
+            { WindowType.Game, typeof(GameWindowView) },
         };
 
         public static Type GetViewType(WindowType windowType)
         {
             return _viewTypes[windowType];
-        }
-
-        public static Type GetModelType(WindowType windowType)
-        {
-            return _modelTypes[windowType];
         }
     }
 }

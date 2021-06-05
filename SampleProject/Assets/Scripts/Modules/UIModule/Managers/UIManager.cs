@@ -4,7 +4,6 @@ using Modules.ScenariosModule.Managers;
 using Modules.UIModule.Controllers;
 using Modules.UIModule.Enums;
 using Modules.UIModule.Views;
-using Modules.UIModule.Views.MainWindow;
 
 namespace Modules.UIModule.Managers
 {
@@ -20,13 +19,6 @@ namespace Modules.UIModule.Managers
             _uiController = new UIController(resourcesManager, coroutineController, scenarioManager);
         }
 
-        public void Show<TView, TViewModel>(WindowType windowType, TViewModel viewModel)
-            where TView : IBaseView<TViewModel>
-            where TViewModel : IViewModel
-        {
-            _uiController.ShowWindow<TView, TViewModel>(windowType, viewModel);
-        }
-
         public void Show<TViewModel>(WindowType windowType, TViewModel viewModel) where TViewModel : IViewModel
         {
             _uiController.ShowWindow(windowType, viewModel);
@@ -34,12 +26,12 @@ namespace Modules.UIModule.Managers
 
         public void Hide(WindowType windowType)
         {
-            
+            _uiController.HideWindow(windowType);
         }
 
         public void HideAll()
         {
-            
+            _uiController.HideAllWindows();
         }
     }
 }

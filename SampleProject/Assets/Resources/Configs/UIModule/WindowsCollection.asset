@@ -17,3 +17,7 @@ MonoBehaviour:
     _resourcePath: Prefabs/MainWindow
     _resourcesCategory: 10
     _fileExtension: .prefab
+  - _id: game_window
+    _resourcePath: Prefabs/GameWindow
+    _resourcesCategory: 10
+    _fileExtension: .prefab

@@ -6,7 +6,6 @@ using Modules.UIModule.Enums;
 using Modules.UIModule.Helpers;
 using Modules.UIModule.Providers;
 using Modules.UIModule.Views;
-using Modules.UIModule.Views.MainWindow;
 
 namespace Modules.UIModule.Controllers
 {
@@ -29,32 +28,25 @@ namespace Modules.UIModule.Controllers
             
             _windowViewProvider = new WindowViewProvider(scenarioManager, coroutineController, _canvasesProvider, _windowsProvider, _canvasesCollection, _windowsCollection);
         }
-
-        public TView ShowWindow<TView, TViewModel>(WindowType windowType, TViewModel viewModel)
-            where TView : IBaseView<TViewModel>
+        
+        public void ShowWindow<TViewModel>(WindowType windowType, TViewModel viewModel)
             where TViewModel : IViewModel
         {
             var windowModel = _windowViewProvider.GetOrAddWindow(windowType);
-            var windowView = windowModel.Window.GetComponent<TView>();
-            windowView.Initialize(viewModel);
-
-            return windowView;
+            var viewType = WindowTypeHelper.GetViewType(windowType);
+            var windowView = windowModel.Window.GetComponent(viewType);
+            var baseView = (BaseView<TViewModel>) windowView;
+            baseView.Initialize(viewModel);
         }
-
+        
         public bool HideWindow(WindowType windowType)
         {
             return _windowViewProvider.RemoveWindow(windowType);
         }
 
-        public void ShowWindow<TViewModel>(WindowType windowType, TViewModel viewModel)
-            where TViewModel : IViewModel
+        public void HideAllWindows()
         {
-            var windowModel = _windowViewProvider.GetOrAddWindow(windowType);
-
-            var viewType = WindowTypeHelper.GetViewType(windowType);
-            var windowView = windowModel.Window.GetComponent(viewType);
-            var baseView = (BaseView<TViewModel>) windowView;
-            baseView.Initialize(viewModel);
+            _windowViewProvider.RemoveAllWindows();
         }
     }
 }

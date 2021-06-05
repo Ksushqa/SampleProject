@@ -16,3 +16,6 @@ MonoBehaviour:
   - _type: 0
     _id: main_window
     _canvas: 0
+  - _type: 10
+    _id: game_window
+    _canvas: 0
