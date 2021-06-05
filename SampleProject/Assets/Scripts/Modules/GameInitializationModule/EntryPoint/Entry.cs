@@ -1,9 +1,11 @@
 ﻿using Modules.CommonModule.Controllers;
 using Modules.ResourcesModule.Managers;
+using Modules.SaveModule.Managers;
 using Modules.ScenariosModule.Enums;
 using Modules.ScenariosModule.Managers;
 using Modules.ScenariosModule.Scenarios;
 using Modules.UIModule.Managers;
+using Modules.UserProfileDataModule.Facades;
 using UnityEngine;
 
 namespace Modules.GameInitializationModule.EntryPoint
@@ -17,10 +19,15 @@ namespace Modules.GameInitializationModule.EntryPoint
             var coroutineControllerPrefab = resourcesManager.Load<CoroutineController>("Services/CoroutineController");
             var coroutineController = Instantiate(coroutineControllerPrefab);
             
-            IScenarioManager scenarioManager = new ScenarioManager();
+            ISaveManager saveManager = new SaveManager();
+            IScenarioManager scenarioManager = new ScenarioManager(saveManager);
             IUIManager uiManager = new UIManager(resourcesManager, coroutineController, scenarioManager);
-
-            var mainWindowScenario = new MainWindowScenario(scenarioManager, uiManager);
+            IUserProfileDataFacade userProfileDataFacade = new UserProfileDataFacade();
+            
+            saveManager.Register(userProfileDataFacade);
+            saveManager.LoadState();
+            
+            var mainWindowScenario = new MainWindowScenario(scenarioManager, uiManager, userProfileDataFacade);
             var gameWindowScenario = new GameWindowScenario(scenarioManager, uiManager);
             
             mainWindowScenario.InitializeActionsToStorage();

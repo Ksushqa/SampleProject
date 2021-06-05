@@ -62,23 +62,17 @@ namespace Modules.UIModule.Views
         {
             GameObject = gameObject;
             OnStartActions();
-        }
-
-        private void OnDestroy()
-        {
-            OnDestroyActions();
-        }
-
-        private void OnEnable()
-        {
+            
             if (!_isSubscribed)
             {
                 OnSubscribeActions();
             }
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
+            OnDestroyActions();
+            
             if (_isSubscribed)
             {
                 OnUnsubscribeActions();

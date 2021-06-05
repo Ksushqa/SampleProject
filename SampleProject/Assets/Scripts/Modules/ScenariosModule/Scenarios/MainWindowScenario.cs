@@ -4,7 +4,7 @@ using Modules.UIModule.Enums;
 using Modules.UIModule.Managers;
 using Modules.UIModule.Views.GameWindow;
 using Modules.UIModule.Views.MainWindow;
-using UnityEngine;
+using Modules.UserProfileDataModule.Facades;
 
 namespace Modules.ScenariosModule.Scenarios
 {
@@ -14,25 +14,29 @@ namespace Modules.ScenariosModule.Scenarios
 
         private readonly IScenarioManager _scenarioManager;
         private readonly IUIManager _uiManager;
+        private readonly IUserProfileDataFacade _userProfileDataFacade;
 
-        public MainWindowScenario(IScenarioManager scenarioManager, IUIManager uiManager) : base(scenarioManager, uiManager)
+        public MainWindowScenario(
+            IScenarioManager scenarioManager,
+            IUIManager uiManager,
+            IUserProfileDataFacade userProfileDataFacade) : base(scenarioManager, uiManager)
         {
             _scenarioManager = scenarioManager;
             _uiManager = uiManager;
+            _userProfileDataFacade = userProfileDataFacade;
         }
         
         public override void InitializeActionsToStorage()
         {
             AddAction(GameActionType.GameInitialized, args =>
             {
-                Debug.Log("GameActionType.GameInitialized");
                 ShowWindowOver(WindowType.Main, new MainWindowViewModel());
             });
             
             AddAction(GameActionType.StartGameButtonPressed, args =>
             {
-                Debug.Log("GameActionType.StartGameButtonPressed");
-                ShowWindowUnique(WindowType.Game, new GameWindowViewModel());
+                HideWindow();
+                ShowWindowOver(WindowType.Game, new GameWindowViewModel(_userProfileDataFacade));
             });
         }
     }

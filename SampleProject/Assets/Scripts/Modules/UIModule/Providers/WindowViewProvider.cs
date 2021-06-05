@@ -72,6 +72,7 @@ namespace Modules.UIModule.Providers
             if (_windows.ContainsKey(windowType))
             {
                 var windowModel = _windows[windowType];
+                _windows.Remove(windowModel.WindowType);
                 _coroutineController.StartCoroutine(RemoveWindowCoroutine(windowModel));
                 return true;
             }
@@ -84,7 +85,6 @@ namespace Modules.UIModule.Providers
             windowModel.Window.PlayDestroy();
             yield return new WaitForSeconds(windowModel.Window.TimeBeforeDestroy);
             Object.Destroy(windowModel.Canvas);
-            _windows.Remove(windowModel.WindowType);
         }
 
         public void RemoveAllWindows()

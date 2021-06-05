@@ -18,7 +18,8 @@ namespace Modules.ScenariosModule.Scenarios
         {
             AddAction(GameActionType.BackToMainMenuPressed, args =>
             {
-                ShowWindowUnique(WindowType.Main, new MainWindowViewModel());
+                HideWindow();
+                ShowWindowOver(WindowType.Main, new MainWindowViewModel());
             });
         }
     }
