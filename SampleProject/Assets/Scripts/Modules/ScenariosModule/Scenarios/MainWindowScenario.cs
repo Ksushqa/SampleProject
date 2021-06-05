@@ -5,6 +5,7 @@ using Modules.UIModule.Managers;
 using Modules.UIModule.Views.GameWindow;
 using Modules.UIModule.Views.MainWindow;
 using Modules.UserProfileDataModule.Facades;
+using Modules.WorldModule.Facades;
 
 namespace Modules.ScenariosModule.Scenarios
 {
@@ -15,15 +16,16 @@ namespace Modules.ScenariosModule.Scenarios
         private readonly IScenarioManager _scenarioManager;
         private readonly IUIManager _uiManager;
         private readonly IUserProfileDataFacade _userProfileDataFacade;
+        private readonly IWorldFacade _worldFacade;
 
-        public MainWindowScenario(
-            IScenarioManager scenarioManager,
+        public MainWindowScenario(IScenarioManager scenarioManager,
             IUIManager uiManager,
-            IUserProfileDataFacade userProfileDataFacade) : base(scenarioManager, uiManager)
+            IUserProfileDataFacade userProfileDataFacade, IWorldFacade worldFacade) : base(scenarioManager, uiManager)
         {
             _scenarioManager = scenarioManager;
             _uiManager = uiManager;
             _userProfileDataFacade = userProfileDataFacade;
+            _worldFacade = worldFacade;
         }
         
         public override void InitializeActionsToStorage()
@@ -37,6 +39,7 @@ namespace Modules.ScenariosModule.Scenarios
             {
                 HideWindow();
                 ShowWindowOver(WindowType.Game, new GameWindowViewModel(_userProfileDataFacade));
+                _worldFacade.Start();
             });
         }
     }
