@@ -41,7 +41,7 @@ namespace Modules.GameInitializationModule.EntryPoint
             IUIManager uiManager = new UIManager(resourcesManager, coroutineController, scenarioManager);
             IUserProfileDataFacade userProfileDataFacade = new UserProfileDataFacade();
             IPlayerFacade playerFacade = new PlayerFacade(logger, _mainCamera, resourcesManager, mouseUserActionController);
-            IGameElementFacade gameElementFacade = new GameElementFacade(logger);
+            IGameElementFacade gameElementFacade = new GameElementFacade(logger, resourcesManager, coroutineController);
             IWorldFacade worldFacade = new WorldFacade(logger, playerFacade, gameElementFacade);
             
             saveManager.Register(userProfileDataFacade);
