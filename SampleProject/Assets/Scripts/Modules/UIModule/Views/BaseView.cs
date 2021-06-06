@@ -41,9 +41,14 @@ namespace Modules.UIModule.Views
             _viewModel = viewModel;
         }
 
-        public void ExecuteAction(GameActionType gameActionType, GameActionArgs actionArgs = null)
+        protected void ExecuteAction(GameActionType gameActionType, GameActionArgs actionArgs = null)
         {
             _baseWindowView.ScenarioManager.ExecuteAction(gameActionType, actionArgs);
+        }
+
+        protected void AddSubView<T>(BaseView<T> subView, T viewModel) where T : IViewModel
+        {
+            subView.Initialize(viewModel);
         }
         
         protected virtual void OnDestroyActions()

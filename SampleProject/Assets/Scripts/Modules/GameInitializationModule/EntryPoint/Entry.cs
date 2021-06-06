@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using Modules.CommonModule.Controllers;
+﻿using Modules.CommonModule.Controllers;
+using Modules.CommonModule.Logger;
+using Modules.GameElementsModule.Facades;
 using Modules.PlayerModule.Facades;
 using Modules.PoolModule.Manager;
 using Modules.ResourcesModule.Managers;
@@ -18,6 +19,13 @@ namespace Modules.GameInitializationModule.EntryPoint
     {      
         private void Start()
         {
+            IProjectLogger logger =
+#if UNITY_EDITOR
+                new ProjectLogger();
+#else
+                new FakeLogger();
+#endif
+            
             IResourcesManager resourcesManager = new ResourcesManager();
             
             var coroutineControllerPrefab = resourcesManager.Load<CoroutineController>("Services/CoroutineController");
@@ -28,14 +36,15 @@ namespace Modules.GameInitializationModule.EntryPoint
             IScenarioManager scenarioManager = new ScenarioManager(saveManager);
             IUIManager uiManager = new UIManager(resourcesManager, coroutineController, scenarioManager);
             IUserProfileDataFacade userProfileDataFacade = new UserProfileDataFacade();
-            IPlayerFacade playerFacade = new PlayerFacade();
-            IWorldFacade worldFacade = new WorldFacade(playerFacade);
+            IPlayerFacade playerFacade = new PlayerFacade(logger, resourcesManager);
+            IGameElementFacade gameElementFacade = new GameElementFacade(logger);
+            IWorldFacade worldFacade = new WorldFacade(logger, playerFacade, gameElementFacade);
             
             saveManager.Register(userProfileDataFacade);
             saveManager.LoadState();
             
             var mainWindowScenario = new MainWindowScenario(scenarioManager, uiManager, userProfileDataFacade, worldFacade);
-            var gameWindowScenario = new GameWindowScenario(scenarioManager, uiManager);
+            var gameWindowScenario = new GameWindowScenario(scenarioManager, uiManager, worldFacade);
             
             mainWindowScenario.InitializeActionsToStorage();
             gameWindowScenario.InitializeActionsToStorage();

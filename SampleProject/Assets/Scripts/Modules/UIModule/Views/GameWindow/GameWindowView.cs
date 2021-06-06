@@ -14,7 +14,7 @@ namespace Modules.UIModule.Views.GameWindow
         {
             foreach (var userProfileView in _userProfileViews)
             {
-                userProfileView.Initialize(new UserProfileViewModel(ViewModel.UserProfileDataFacade));
+                AddSubView(userProfileView, new UserProfileViewModel(ViewModel.UserProfileDataFacade));
             }
         }
 

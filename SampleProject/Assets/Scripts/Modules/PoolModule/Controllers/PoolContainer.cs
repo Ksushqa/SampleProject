@@ -42,6 +42,7 @@ namespace Modules.PoolModule.Controllers
             else
             {
                 instance.SetActive(false);
+                Object.DontDestroyOnLoad(instance);
                 _inactiveInstances.Add(instance);                
             }            
         }
