@@ -16,7 +16,9 @@ using UnityEngine;
 namespace Modules.GameInitializationModule.EntryPoint
 {
     public class Entry : MonoBehaviour
-    {      
+    {
+        [SerializeField] private Camera _mainCamera = default;
+        
         private void Start()
         {
             IProjectLogger logger =
@@ -30,13 +32,15 @@ namespace Modules.GameInitializationModule.EntryPoint
             
             var coroutineControllerPrefab = resourcesManager.Load<CoroutineController>("Services/CoroutineController");
             var coroutineController = Instantiate(coroutineControllerPrefab);
+            var mouseUserActionControllerPrefab = resourcesManager.Load<MouseUserActionController>("Services/MouseUserActionController");
+            var mouseUserActionController = Instantiate(mouseUserActionControllerPrefab);
             
             IPoolManager poolManager = new PoolManager();
             ISaveManager saveManager = new SaveManager();
             IScenarioManager scenarioManager = new ScenarioManager(saveManager);
             IUIManager uiManager = new UIManager(resourcesManager, coroutineController, scenarioManager);
             IUserProfileDataFacade userProfileDataFacade = new UserProfileDataFacade();
-            IPlayerFacade playerFacade = new PlayerFacade(logger, resourcesManager);
+            IPlayerFacade playerFacade = new PlayerFacade(logger, _mainCamera, resourcesManager, mouseUserActionController);
             IGameElementFacade gameElementFacade = new GameElementFacade(logger);
             IWorldFacade worldFacade = new WorldFacade(logger, playerFacade, gameElementFacade);
             

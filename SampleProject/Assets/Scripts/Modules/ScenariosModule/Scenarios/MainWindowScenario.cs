@@ -18,7 +18,8 @@ namespace Modules.ScenariosModule.Scenarios
         private readonly IUserProfileDataFacade _userProfileDataFacade;
         private readonly IWorldFacade _worldFacade;
 
-        public MainWindowScenario(IScenarioManager scenarioManager,
+        public MainWindowScenario(
+            IScenarioManager scenarioManager,
             IUIManager uiManager,
             IUserProfileDataFacade userProfileDataFacade, IWorldFacade worldFacade) : base(scenarioManager, uiManager)
         {

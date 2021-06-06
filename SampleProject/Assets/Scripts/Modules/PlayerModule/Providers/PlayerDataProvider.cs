@@ -7,7 +7,9 @@ namespace Modules.PlayerModule.Providers
     public class PlayerDataProvider : ScriptableObject
     {
         [SerializeField] private PlayerView _playerPrefab = default;
+        [SerializeField] private float _speed = default;
 
         public PlayerView PlayerPrefab => _playerPrefab;
+        public float Speed => _speed;
     }
 }

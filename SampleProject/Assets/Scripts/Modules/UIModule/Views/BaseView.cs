@@ -71,6 +71,7 @@ namespace Modules.UIModule.Views
             if (!_isSubscribed)
             {
                 OnSubscribeActions();
+                _isSubscribed = true;
             }
         }
 
@@ -81,6 +82,7 @@ namespace Modules.UIModule.Views
             if (_isSubscribed)
             {
                 OnUnsubscribeActions();
+                _isSubscribed = false;
             }
         }
     }
