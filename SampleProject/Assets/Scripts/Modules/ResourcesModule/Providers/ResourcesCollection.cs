@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Modules.ExceptionsModule.ResourcesModuleExceptions;
+using Modules.ResourcesModule.Exceptions;
 using Modules.ResourcesModule.Models;
 using UnityEngine;
 

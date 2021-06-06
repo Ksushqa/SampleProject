@@ -1,6 +1,6 @@
 using System;
 
-namespace Modules.ExceptionsModule.ResourcesModuleExceptions
+namespace Modules.ResourcesModule.Exceptions
 {
     public class IncorrectResourceIdException : Exception
     {

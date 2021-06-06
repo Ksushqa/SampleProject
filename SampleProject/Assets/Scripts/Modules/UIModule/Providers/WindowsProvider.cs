@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Modules.ExceptionsModule.UIModuleExceptions;
 using Modules.UIModule.Enums;
+using Modules.UIModule.Exceptions;
 using Modules.UIModule.Models;
 using UnityEngine;
 

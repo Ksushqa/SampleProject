@@ -1,5 +1,7 @@
-﻿using Modules.CommonModule.Controllers;
+﻿using System.Collections;
+using Modules.CommonModule.Controllers;
 using Modules.PlayerModule.Facades;
+using Modules.PoolModule.Manager;
 using Modules.ResourcesModule.Managers;
 using Modules.SaveModule.Managers;
 using Modules.ScenariosModule.Enums;
@@ -13,7 +15,7 @@ using UnityEngine;
 namespace Modules.GameInitializationModule.EntryPoint
 {
     public class Entry : MonoBehaviour
-    {
+    {      
         private void Start()
         {
             IResourcesManager resourcesManager = new ResourcesManager();
@@ -21,6 +23,7 @@ namespace Modules.GameInitializationModule.EntryPoint
             var coroutineControllerPrefab = resourcesManager.Load<CoroutineController>("Services/CoroutineController");
             var coroutineController = Instantiate(coroutineControllerPrefab);
             
+            IPoolManager poolManager = new PoolManager();
             ISaveManager saveManager = new SaveManager();
             IScenarioManager scenarioManager = new ScenarioManager(saveManager);
             IUIManager uiManager = new UIManager(resourcesManager, coroutineController, scenarioManager);

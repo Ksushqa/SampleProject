@@ -1,6 +1,6 @@
 using System;
 
-namespace Modules.ExceptionsModule.ScenarioModuleExceptions
+namespace Modules.ScenariosModule.Exceptions
 {
     public class DuplicatedActionException : Exception
     {

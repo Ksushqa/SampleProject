@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Modules.ExceptionsModule.ScenarioModuleExceptions;
 using Modules.ScenariosModule.Enums;
+using Modules.ScenariosModule.Exceptions;
 using Modules.ScenariosModule.Models;
 
 namespace Modules.ScenariosModule.Controllers

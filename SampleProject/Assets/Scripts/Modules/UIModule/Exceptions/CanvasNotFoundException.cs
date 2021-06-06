@@ -1,6 +1,6 @@
 using System;
 
-namespace Modules.ExceptionsModule.UIModuleExceptions
+namespace Modules.UIModule.Exceptions
 {
     public class CanvasNotFoundException : Exception
     {
