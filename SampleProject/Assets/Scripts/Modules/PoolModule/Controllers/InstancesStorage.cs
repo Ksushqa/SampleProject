@@ -22,5 +22,15 @@ namespace Modules.PoolModule.Controllers
         {
             _instances.Add(instance, prefab);
         }
+
+        public bool ContainsInstance(GameObject instance)
+        {
+            return _instances.ContainsKey(instance);
+        }
+
+        public void RemoveInstance(GameObject instance)
+        {
+            _instances.Remove(instance);
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace Modules.UIModule.Views.GameWindow
                 
         private void HandleUserProfileChanged(object sender, UserProfileDataChangedArgs args)
         {
-            if (args.Type == UserProfileDataType.Coins)
+            if (args.Type == _profileType)
             {
                 _counter.text = args.AfterAmount.ToString();
             }

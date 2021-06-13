@@ -9,9 +9,9 @@ namespace Modules.PoolModule.Controllers
     {
         private readonly List<GameObject> _activeInstances = new List<GameObject>();
         private readonly List<GameObject> _inactiveInstances = new List<GameObject>();
-
         private readonly GameObject _prefab;
-        private int _constraint = 20;
+        
+        private const int Constraint = 20;
 
         public PoolContainer(GameObject prefab)
         {
@@ -20,10 +20,20 @@ namespace Modules.PoolModule.Controllers
 
         public GameObject Instantiate()
         {
-            var instance = Object.Instantiate(_prefab);
-            _activeInstances.Add(instance);
-
-            return instance;
+            if (_inactiveInstances.Count == 0)
+            {
+                var instance = Object.Instantiate(_prefab);
+                _activeInstances.Add(instance);
+                return instance;
+            }
+            else
+            {
+                var instance = _inactiveInstances[0];
+                instance.SetActive(true);
+                _activeInstances.Add(instance);
+                _inactiveInstances.Remove(instance);
+                return instance;
+            }
         }
 
         public void Destroy(GameObject instance)
@@ -33,23 +43,18 @@ namespace Modules.PoolModule.Controllers
                 throw new Exception();
             }
             
-            _activeInstances.Remove(instance);
-
-            if (_activeInstances.Count + _inactiveInstances.Count >= _constraint)
+            if (_inactiveInstances.Count >= Constraint)
             {
+                _activeInstances.Remove(instance);
                 Object.Destroy(instance);
             }
             else
             {
                 instance.SetActive(false);
                 Object.DontDestroyOnLoad(instance);
+                _activeInstances.Remove(instance);
                 _inactiveInstances.Add(instance);                
             }            
-        }
-
-        public void SetConstraint(int constraint)
-        {
-            _constraint = constraint;
         }
     }
 }

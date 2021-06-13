@@ -15,16 +15,6 @@ namespace Modules.PoolModule.Manager
         {
             _instancesStorage = new InstancesStorage();
         }
-
-        public void SetConstraint(GameObject prefab, int constraint)
-        {
-            if (_containers.ContainsKey(prefab))
-            {
-                throw new PoolConstraintException();
-            }
-            
-            _containers[prefab].SetConstraint(constraint);
-        }
         
         public GameObject Instantiate(GameObject prefab)
         {
@@ -34,7 +24,11 @@ namespace Modules.PoolModule.Manager
             }
 
             var instance = _containers[prefab].Instantiate();
-            _instancesStorage.AddInstance(instance, prefab);
+
+            if (!_instancesStorage.ContainsInstance(instance))
+            {
+                _instancesStorage.AddInstance(instance, prefab);
+            }
             
             return instance;
         }
@@ -46,6 +40,11 @@ namespace Modules.PoolModule.Manager
             if (!_containers.ContainsKey(prefab))
             {
                 throw new InstanceNotFoundInPoolException(instance.name);
+            }
+
+            if (_instancesStorage.ContainsInstance(instance))
+            {
+                _instancesStorage.RemoveInstance(instance);
             }
             
             _containers[prefab].Destroy(instance);
