@@ -1,3 +1,4 @@
+using Modules.CommonModule.Views;
 using Modules.UIModule.Views;
 using Modules.UserProfileDataModule.Enums;
 using Modules.UserProfileDataModule.Facades;

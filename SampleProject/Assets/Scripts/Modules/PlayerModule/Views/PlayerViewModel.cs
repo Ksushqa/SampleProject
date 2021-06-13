@@ -1,4 +1,5 @@
 using Modules.CommonModule.Controllers;
+using Modules.CommonModule.Views;
 using Modules.UIModule.Views;
 using UnityEngine;
 

@@ -1,5 +1,5 @@
+using Modules.CommonModule.Views;
 using Modules.UIModule.Enums;
-using Modules.UIModule.Views;
 
 namespace Modules.UIModule.Controllers
 {

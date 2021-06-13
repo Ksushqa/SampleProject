@@ -1,9 +1,9 @@
 using Modules.CommonModule.Controllers;
+using Modules.CommonModule.Views;
 using Modules.ResourcesModule.Managers;
 using Modules.ScenariosModule.Managers;
 using Modules.UIModule.Controllers;
 using Modules.UIModule.Enums;
-using Modules.UIModule.Views;
 
 namespace Modules.UIModule.Managers
 {

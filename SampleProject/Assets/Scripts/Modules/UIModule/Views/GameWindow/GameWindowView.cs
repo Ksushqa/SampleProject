@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Modules.CommonModule.Views;
 using Modules.ScenariosModule.Enums;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Modules.UIModule.Views.GameWindow
 {
-    public class GameWindowView : BaseView<GameWindowViewModel>
+    public class GameWindowView : BaseUiView<GameWindowViewModel>
     {
         [SerializeField] private List<UserProfileView> _userProfileViews = default;
         [SerializeField] private Button _backToMainMenuButton = default;

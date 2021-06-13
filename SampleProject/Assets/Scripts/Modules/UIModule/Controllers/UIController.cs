@@ -1,11 +1,11 @@
 using Modules.CommonModule.Controllers;
+using Modules.CommonModule.Views;
 using Modules.ResourcesModule.Managers;
 using Modules.ResourcesModule.Providers;
 using Modules.ScenariosModule.Managers;
 using Modules.UIModule.Enums;
 using Modules.UIModule.Helpers;
 using Modules.UIModule.Providers;
-using Modules.UIModule.Views;
 
 namespace Modules.UIModule.Controllers
 {
@@ -35,7 +35,7 @@ namespace Modules.UIModule.Controllers
             var windowModel = _windowViewProvider.GetOrAddWindow(windowType);
             var viewType = WindowTypeHelper.GetViewType(windowType);
             var windowView = windowModel.Window.GetComponent(viewType);
-            var baseView = (BaseView<TViewModel>) windowView;
+            var baseView = (BaseUiView<TViewModel>) windowView;
             baseView.Initialize(viewModel);
         }
         

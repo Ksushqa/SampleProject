@@ -1,4 +1,5 @@
 using System;
+using Modules.CommonModule.Views;
 using Modules.ScenariosModule.Enums;
 using Modules.ScenariosModule.Managers;
 using Modules.ScenariosModule.Models;

@@ -1,15 +1,8 @@
 using System;
-using Modules.ScenariosModule.Enums;
-using Modules.ScenariosModule.Models;
 using UnityEngine;
 
-namespace Modules.UIModule.Views
+namespace Modules.CommonModule.Views
 {
-    public abstract class BaseView : BaseView<IViewModel>
-    {
-        
-    }
-    
     public abstract class BaseView<TViewModel> : MonoBehaviour, IBaseView<TViewModel>
         where TViewModel : IViewModel
     {
@@ -33,17 +26,10 @@ namespace Modules.UIModule.Views
 
         private TViewModel _viewModel;
         private bool _isSubscribed;
-        private BaseWindowView _baseWindowView;
 
-        public void Initialize(TViewModel viewModel)
+        public virtual void Initialize(TViewModel viewModel)
         {
-            _baseWindowView = GetComponent<BaseWindowView>();
             _viewModel = viewModel;
-        }
-
-        protected void ExecuteAction(GameActionType gameActionType, GameActionArgs actionArgs = null)
-        {
-            _baseWindowView.ScenarioManager.ExecuteAction(gameActionType, actionArgs);
         }
 
         protected void AddSubView<T>(BaseView<T> subView, T viewModel) where T : IViewModel

@@ -1,3 +1,4 @@
+using Modules.CommonModule.Views;
 using Modules.UserProfileDataModule.Facades;
 
 namespace Modules.UIModule.Views.GameWindow

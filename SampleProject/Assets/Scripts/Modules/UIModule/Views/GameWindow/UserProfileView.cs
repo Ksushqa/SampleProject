@@ -1,3 +1,4 @@
+using Modules.CommonModule.Views;
 using Modules.UserProfileDataModule.Enums;
 using Modules.UserProfileDataModule.Models;
 using TMPro;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace Modules.UIModule.Views.GameWindow
 {
-    public class UserProfileView : BaseView<UserProfileViewModel>
+    public class UserProfileView : BaseUiView<UserProfileViewModel>
     {
         [SerializeField] private UserProfileDataType _profileType;
         [SerializeField] private TextMeshProUGUI _profileName;

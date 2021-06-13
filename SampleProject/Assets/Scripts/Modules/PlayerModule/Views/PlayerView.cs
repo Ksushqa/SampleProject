@@ -1,12 +1,12 @@
 using Modules.CommonModule.Controllers;
 using Modules.CommonModule.Enums;
-using Modules.UIModule.Views;
+using Modules.CommonModule.Views;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Modules.PlayerModule.Views
 {
-    public class PlayerView : BaseView<PlayerViewModel>
+    public class PlayerView : BaseGameView<PlayerViewModel>
     {
         private bool _isMoving;
         private Vector3 _nextPosition;

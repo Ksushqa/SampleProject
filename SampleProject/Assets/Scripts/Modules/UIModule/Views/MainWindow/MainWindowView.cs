@@ -1,10 +1,11 @@
+using Modules.CommonModule.Views;
 using Modules.ScenariosModule.Enums;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Modules.UIModule.Views.MainWindow
 {
-    public class MainWindowView : BaseView<MainWindowViewModel>
+    public class MainWindowView : BaseUiView<MainWindowViewModel>
     {
         [SerializeField] private Button _startGameButton = default;
         

@@ -1,4 +1,4 @@
-namespace Modules.UIModule.Views
+namespace Modules.CommonModule.Views
 {
     public interface IViewModel
     {

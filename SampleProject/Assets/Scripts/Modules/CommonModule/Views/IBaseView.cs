@@ -1,4 +1,6 @@
-namespace Modules.UIModule.Views
+using Modules.UIModule.Views;
+
+namespace Modules.CommonModule.Views
 {
     public interface IBaseView<TViewModel> where TViewModel : IViewModel
     {
